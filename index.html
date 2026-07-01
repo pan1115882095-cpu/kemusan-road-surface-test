@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#155e75">
+    <title>科目三 5号线模拟考试</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="app-header">
+      <div>
+        <p class="eyebrow">大众科目三考试</p>
+        <h1>5号线模拟考试</h1>
+      </div>
+      <div class="status-pill" id="gpsStatus">未定位</div>
+    </header>
+
+    <main class="app-shell">
+      <section class="hero-panel">
+        <div>
+          <p class="section-label">当前项目</p>
+          <h2 id="currentEventTitle">准备开始</h2>
+          <p id="currentEventDetail">先允许定位和语音，然后选择采集路线或开始考试。</p>
+        </div>
+        <div class="metric-grid">
+          <div class="metric">
+            <span>速度</span>
+            <strong id="speedValue">--</strong>
+            <small>km/h</small>
+          </div>
+          <div class="metric">
+            <span>精度</span>
+            <strong id="accuracyValue">--</strong>
+            <small>m</small>
+          </div>
+          <div class="metric">
+            <span>项目</span>
+            <strong id="progressValue">0/14</strong>
+            <small>完成</small>
+          </div>
+        </div>
+      </section>
+
+      <nav class="tabs" aria-label="功能切换">
+        <button class="tab active" data-tab="exam">考试</button>
+        <button class="tab" data-tab="capture">采集</button>
+        <button class="tab" data-tab="route">路线</button>
+        <button class="tab" data-tab="report">成绩</button>
+      </nav>
+
+      <section class="tab-panel active" id="tab-exam">
+        <div class="controls">
+          <button class="primary" id="startExamBtn">开始模拟考试</button>
+          <button id="stopExamBtn">结束</button>
+          <button id="enableVoiceBtn">开启语音</button>
+        </div>
+
+        <div class="exam-card">
+          <div class="exam-head">
+            <div>
+              <p class="section-label">自动评分</p>
+              <h3 id="autoRuleTitle">等待进入项目</h3>
+            </div>
+            <span class="result-badge neutral" id="autoResult">待判定</span>
+          </div>
+          <div class="progress-bar" aria-hidden="true"><span id="ruleProgress"></span></div>
+          <p id="autoRuleDetail">到达触发区后会自动播报和评分。</p>
+        </div>
+
+        <div class="manual-actions">
+          <button id="manualPassBtn">手动确认合格</button>
+          <button class="danger" id="manualFailBtn">手动扣分/不合格</button>
+          <button id="skipEventBtn">跳到下一项</button>
+        </div>
+      </section>
+
+      <section class="tab-panel" id="tab-capture">
+        <div class="capture-grid">
+          <div class="exam-card">
+            <p class="section-label">实车采集</p>
+            <h3>记录 GPS 轨迹和项目点</h3>
+            <p>先点“开始采集”，按路线行驶；到每个项目位置时点“标记当前项目”。数据会保存在本机浏览器。</p>
+            <div class="controls">
+              <button class="primary" id="startCaptureBtn">开始采集</button>
+              <button id="stopCaptureBtn">停止采集</button>
+            </div>
+            <label class="field">
+              <span>要标记的项目</span>
+              <select id="captureEventSelect"></select>
+            </label>
+            <button id="markEventBtn">标记当前项目</button>
+          </div>
+          <div class="exam-card">
+            <p class="section-label">采集数据</p>
+            <div class="data-row"><span>轨迹点</span><strong id="trackCount">0</strong></div>
+            <div class="data-row"><span>已标记项目</span><strong id="markedCount">0</strong></div>
+            <div class="controls">
+              <button id="exportRouteBtn">导出路线 JSON</button>
+              <button class="danger" id="clearCaptureBtn">清空采集</button>
+            </div>
+            <textarea id="routeJson" readonly placeholder="导出的路线数据会显示在这里"></textarea>
+          </div>
+        </div>
+      </section>
+
+      <section class="tab-panel" id="tab-route">
+        <div class="timeline" id="routeTimeline"></div>
+      </section>
+
+      <section class="tab-panel" id="tab-report">
+        <div class="exam-card">
+          <div class="exam-head">
+            <div>
+              <p class="section-label">成绩单</p>
+              <h3 id="finalResult">尚未开始</h3>
+            </div>
+            <span class="result-badge neutral" id="scoreBadge">0 扣分</span>
+          </div>
+          <div id="reportList" class="report-list"></div>
+        </div>
+      </section>
+    </main>
+
+    <template id="eventTemplate">
+      <article class="timeline-item">
+        <div class="step-index"></div>
+        <div>
+          <h3></h3>
+          <p></p>
+          <div class="tags"></div>
+        </div>
+      </article>
+    </template>
+
+    <script src="app.js?v=5"></script>
+  </body>
+</html>
