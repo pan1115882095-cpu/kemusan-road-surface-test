@@ -1,10 +1,11 @@
-const CACHE_NAME = "subject-three-line-five-v6";
+const CACHE_NAME = "subject-three-line-five-v7";
 const ASSETS = [
   "./",
   "./index.html",
   "./styles.css",
   "./app.js?v=5",
   "./reset-fix-v6.js",
+  "./routes-line7-v7.js",
   "./manifest.json",
   "./icon.svg"
 ];
