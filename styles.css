@@ -1,0 +1,395 @@
+:root {
+  color-scheme: light;
+  --bg: #f6f8f7;
+  --surface: #ffffff;
+  --ink: #13201f;
+  --muted: #61706c;
+  --line: #d9e1de;
+  --primary: #155e75;
+  --primary-2: #0f766e;
+  --danger: #b42318;
+  --warning: #b7791f;
+  --ok: #177245;
+  --shadow: 0 12px 32px rgba(20, 36, 33, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+  line-height: 1.5;
+}
+
+button,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  min-height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--ink);
+  padding: 10px 14px;
+  cursor: pointer;
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+button.primary {
+  border-color: var(--primary);
+  background: var(--primary);
+  color: white;
+}
+
+button.danger {
+  border-color: #f1c7c2;
+  color: var(--danger);
+}
+
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px max(16px, env(safe-area-inset-left)) 12px max(16px, env(safe-area-inset-right));
+  background: rgba(246, 248, 247, 0.92);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(12px);
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+h1 {
+  font-size: 22px;
+  line-height: 1.2;
+}
+
+h2 {
+  margin-top: 4px;
+  font-size: 30px;
+  line-height: 1.15;
+}
+
+h3 {
+  font-size: 18px;
+  line-height: 1.25;
+}
+
+.eyebrow,
+.section-label {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.status-pill,
+.result-badge {
+  flex: 0 0 auto;
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-weight: 700;
+  background: #e8f3f0;
+  color: var(--primary);
+}
+
+.result-badge.fail {
+  background: #fde7e4;
+  color: var(--danger);
+}
+
+.result-badge.pass {
+  background: #e7f5ee;
+  color: var(--ok);
+}
+
+.result-badge.warn {
+  background: #fff4db;
+  color: var(--warning);
+}
+
+.app-shell {
+  width: min(1040px, 100%);
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.hero-panel,
+.exam-card,
+.timeline-item {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.hero-panel {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 16px;
+  padding: 18px;
+}
+
+#currentEventDetail,
+#autoRuleDetail,
+.exam-card p,
+.timeline-item p {
+  color: var(--muted);
+}
+
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.metric {
+  min-height: 96px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px;
+  background: #fbfcfb;
+}
+
+.metric span,
+.metric small {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.metric strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 28px;
+  line-height: 1;
+}
+
+.tabs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin: 14px 0;
+}
+
+.tab {
+  background: #eaf0ee;
+  font-weight: 700;
+}
+
+.tab.active {
+  border-color: var(--primary);
+  background: var(--primary);
+  color: white;
+}
+
+.tab-panel {
+  display: none;
+}
+
+.tab-panel.active {
+  display: block;
+}
+
+.controls,
+.manual-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.controls button,
+.manual-actions button {
+  flex: 1 1 150px;
+}
+
+.exam-card {
+  padding: 16px;
+  margin-bottom: 12px;
+}
+
+.exam-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.progress-bar {
+  height: 10px;
+  overflow: hidden;
+  margin: 14px 0;
+  border-radius: 999px;
+  background: #e7eeeb;
+}
+
+.progress-bar span {
+  display: block;
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), var(--primary-2));
+  transition: width 0.2s ease;
+}
+
+.capture-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.field {
+  display: grid;
+  gap: 6px;
+  margin: 12px 0;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+select,
+textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: white;
+  color: var(--ink);
+  padding: 10px;
+}
+
+textarea {
+  min-height: 180px;
+  resize: vertical;
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 12px;
+}
+
+.data-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.timeline {
+  display: grid;
+  gap: 10px;
+}
+
+.timeline-item {
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  gap: 12px;
+  padding: 14px;
+}
+
+.step-index {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border-radius: 999px;
+  background: #e8f3f0;
+  color: var(--primary);
+  font-weight: 800;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.tag {
+  border-radius: 999px;
+  padding: 4px 8px;
+  background: #edf2f0;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.report-list {
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.report-item {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px;
+  background: #fbfcfb;
+}
+
+.report-item.fail {
+  border-color: #f1c7c2;
+  background: #fff7f6;
+}
+
+.report-item.pass {
+  border-color: #bfdfcf;
+  background: #f7fffa;
+}
+
+@media (max-width: 760px) {
+  .app-shell {
+    padding: 12px;
+  }
+
+  .hero-panel,
+  .capture-grid {
+    grid-template-columns: 1fr;
+  }
+
+  h2 {
+    font-size: 25px;
+  }
+
+  .metric-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .metric {
+    min-height: 84px;
+    padding: 10px;
+  }
+
+  .metric strong {
+    font-size: 23px;
+  }
+}
+
+@media (max-width: 420px) {
+  .app-header {
+    align-items: flex-start;
+  }
+
+  .tabs {
+    gap: 6px;
+  }
+
+  .tab {
+    padding: 8px 6px;
+  }
+}
